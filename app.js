@@ -16,7 +16,8 @@ window.addEventListener('load', function(){
             })
             .then(data =>{
                 console.log(data);
-                window.alert(data);
+                document.querySelector('#results').insertAdjacentHTML('afterbegin', data);
+                
             })
     })
 
