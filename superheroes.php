@@ -66,6 +66,18 @@ $superheroes = [
 
 ?>
 
+        <?php $alias = ($_REQUEST['urlcode']);?>
+        <?php foreach ($superheroes as $heroes): ?>
+            <?php if ($heroes['alias'] == $alias && $alias):?>
+            <h3><?php echo $heroes['alias']; ?></h3>
+            <h4><?php echo $heroes['name']; ?></h4>
+            <p><?php echo $heroes['biography']; ?></p>
+            <?php elseif($heroes['alias']!= $alias):?>
+            <p>Superhero Not Found</p>
+            <?php endif;?>  
+            <?php endforeach; ?>
+
+
 <ul>
 <?php foreach ($superheroes as $superhero): ?>
   <li><?= $superhero['alias']; ?></li>
