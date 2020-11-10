@@ -65,22 +65,30 @@ $superheroes = [
 ];
 
 ?>
+<?php $param = $_GET['query'];
 
-        <?php $alias = ($_REQUEST['urlcode']);?>
-        <?php foreach ($superheroes as $heroes): ?>
-            <?php if ($heroes['alias'] == $alias && $alias):?>
-            <h3><?php echo $heroes['alias']; ?></h3>
-            <h4><?php echo $heroes['name']; ?></h4>
-            <p><?php echo $heroes['biography']; ?></p>
-            <?php elseif($heroes['alias']!= $alias):?>
-            <p>Superhero Not Found</p>
-            <?php endif;?>  
-            <?php endforeach; ?>
-
-
+$findSuperhero = [];
+$foundOne = FALSE;
+?>
+<?php if ($param == ''):?>
 <ul>
 <?php foreach ($superheroes as $superhero): ?>
   <li><?= $superhero['alias']; ?></li>
 <?php endforeach; ?>
 </ul>
-
+<?php else:?>
+<?php foreach ($superheroes as $heroes): ?>
+            <?php if ($param == $heroes['alias']){
+                $findSuperhero = $heroes;
+                $foundOne = TRUE;
+            }
+            ?>
+<?php endforeach;?>
+<? if($foundOne):?>
+<h3><?= $findSuperhero['alias'];?></h3>
+<h4><?= $findSuperhero['name'];?></h4>
+<p><?= $findSuperhero['biography'];?></p>
+        <?php else:?>
+        <h1> Superhero not Found</h1>
+<?php endif;?>
+        <?php endif;?>
