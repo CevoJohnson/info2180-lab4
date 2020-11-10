@@ -1,26 +1,23 @@
 window.addEventListener('load', function(){
 
-    let search = document.querySelector("div .btn");
-
-    var urlcode = "superheroes.php/?query=" ;
-
+    let form = document.getElementById("searchers");
     
-    search.addEventListener('click', function(e){
+    form.addEventListener('submit', function(e){
         e.preventDefault();
 
-
-        
-        fetch("http://localhost:8080/superheroes.php")
+        let test = document.getElementById('searches').value;
+           console.log(test);
+           var param = {query:`${test}`};
+           urlParam = new URLSearchParams(Object.entries(param));
+        fetch(`superheroes.php?`+ urlParam)
             .then(response =>{
                 if (response.ok){
-                    return response.text()
+                    return response.text();
                 }else{
-                    return Promise.reject('Oops')
                 }
             })
             .then(data =>{
-                console.log(data);
-                    document.querySelector('#results').innerHTML = data;
+                document.querySelector('#results').innerHTML = data;
                 });
                 })
             })
