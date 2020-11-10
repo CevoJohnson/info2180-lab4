@@ -6,8 +6,9 @@ window.addEventListener('load', function(){
         e.preventDefault();
 
         let test = document.getElementById('searches').value;
-           console.log(test);
-           var param = {query:`${test}`};
+           var trim = test.trim();
+           var param = {query:`${trim}`};
+           console.log(trim);
            urlParam = new URLSearchParams(Object.entries(param));
         fetch(`superheroes.php?`+ urlParam)
             .then(response =>{
